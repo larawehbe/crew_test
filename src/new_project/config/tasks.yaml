@@ -21,10 +21,18 @@ inspect_repo:
 
 run_repo:
   description: >
-    Try to install dependencies (from requirements.txt if available) and run the project using
-    the identified main script. Capture and return stdout and stderr output from the process.
+   Check if the file `cloned_repo/Dockerfile` exists in the project root.
+
+    If it exists:
+    - Use the CodeInterpreterTool to run exactly these two shell commands:
+
+    ```bash
+    docker build -t audited_project ./cloned_repo
+    docker run --rm audited_project
+    ```
+    If the file is **not present**, clearly state: "❌ Dockerfile not found. Cannot run the project."
   expected_output: >
-    Full output from running the project, including success logs or any errors encountered.
+    Docker build and run logs, or a clear message if Dockerfile is missing.
   agent: runner
 
 review_errors:

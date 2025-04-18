@@ -1,11 +1,13 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
+from crewai_tools import CodeInterpreterTool
 import subprocess
 import os
 import shutil
 
 from new_project.tools.custom_tool import CloneRepoTool
 from new_project.tools.inspect_tool import InspectRepoTool
+from new_project.tools.run_docker_tool import RunDockerTool
 
 
 
@@ -34,7 +36,8 @@ class RepoAuditorCrew():
     def runner(self) -> Agent:
         return Agent(
             config=self.agents_config['runner'],
-            verbose=True
+            verbose=True, 
+            tools=[RunDockerTool()],
         )
 
     @agent
