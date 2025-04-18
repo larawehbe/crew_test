@@ -1,17 +1,36 @@
-research_task:
+clone_repo:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    Clone the repository {repo_url} into a local folder named 'cloned_repo'.
+    Make sure to remove any previously existing folder to avoid conflicts.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
-  agent: researcher
+    Confirmation that the repository was cloned successfully or an error if it failed.
+  agent: cloner
 
-reporting_task:
+
+
+inspect_repo:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Use your inspection tool to walk through the cloned_repo directory and list:
+    - Setup files like README.md, requirements.txt, setup.py, Dockerfile
+    - Possible entry points like app.py, main.py
+
+    Your response should include a clear summary of what files were found and what they likely indicate about the project.
   expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    A summary of the repository structure including detected setup files and possible entry points.
+  agent: inspector
+
+run_repo:
+  description: >
+    Try to install dependencies (from requirements.txt if available) and run the project using
+    the identified main script. Capture and return stdout and stderr output from the process.
+  expected_output: >
+    Full output from running the project, including success logs or any errors encountered.
+  agent: runner
+
+review_errors:
+  description: >
+    Analyze the run output or error logs. Identify what went wrong (if anything),
+    and suggest possible fixes or improvements to make the project runnable.
+  expected_output: >
+    A bullet-pointed summary of errors with suggestions or fixes to try. If no errors occurred, confirm successful execution.
+  agent: reviewer

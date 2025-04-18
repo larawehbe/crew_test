@@ -1,3 +1,31 @@
+# 🧠 RepoAuditorCrew – Agentic GitHub Repo Auditor
+
+## 🎯 Main Objective
+
+The `RepoAuditorCrew` automates the end-to-end auditing of a public GitHub repository by executing a sequence of intelligent agent tasks. It is designed to:
+
+1. **Clone** a repository from a provided `repo_url`
+2. **Inspect** the repository structure (e.g., `README.md`, `requirements.txt`, `Dockerfile`, entry points like `app.py`)
+3. **Run** the project by installing dependencies and executing its main script
+4. **Review** the run output or error logs, then suggest fixes or confirm successful execution
+
+## 🔍 Use Cases
+
+- Automated open-source repo evaluations
+- Technical due diligence for new projects
+- Onboarding checks for team-contributed code
+- Bootstrapping code understanding for LLM agents
+
+## 🚀 Bonus Ideas for Extension
+
+- Add license detection
+- Integrate code quality or linting checks
+- Check for known vulnerabilities
+- Generate structured reports (Markdown or PDF)
+
+
+------------------------------------------------------------
+
 # NewProject Crew
 
 Welcome to the NewProject Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
