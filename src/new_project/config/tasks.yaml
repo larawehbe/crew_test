@@ -24,12 +24,16 @@ run_repo:
    Check if the file `cloned_repo/Dockerfile` exists in the project root.
 
     If it exists:
-    - Use the CodeInterpreterTool to run exactly these two shell commands:
+    - Use the RunDockerTool to run exactly these two shell commands:
 
     ```bash
     docker build -t audited_project ./cloned_repo
     docker run --rm audited_project
     ```
+    If you run the dockerfile, do not run the tool again
+    This will build the Docker image and run the container, capturing any output or errors.
+    And, you are not allowed to run it more than once
+    If it includes errors, capture them and provide a summary, and keep them for the reviewer.
     If the file is **not present**, clearly state: "❌ Dockerfile not found. Cannot run the project."
   expected_output: >
     Docker build and run logs, or a clear message if Dockerfile is missing.

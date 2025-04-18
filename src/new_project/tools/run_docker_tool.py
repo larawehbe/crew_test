@@ -7,6 +7,7 @@ class RunDockerTool(BaseTool):
     description: str = "Builds and runs the Dockerfile found in the cloned_repo directory."
 
     def _run(self, **kwargs) -> str:
+        print(f'running doker now!')
         repo_path = "cloned_repo"
         dockerfile_path = os.path.join(repo_path, "Dockerfile")
 
