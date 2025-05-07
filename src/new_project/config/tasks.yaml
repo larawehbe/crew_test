@@ -19,32 +19,34 @@ inspect_repo:
     A summary of the repository structure including detected setup files and possible entry points.
   agent: inspector
 
-run_repo:
-  description: >
-   Check if the file `cloned_repo/Dockerfile` exists in the project root.
+# run_repo:
+#   description: >
+#    Check if the file `cloned_repo/Dockerfile` exists in the project root.
 
-    If it exists:
-    - Use the RunDockerTool to run exactly these two shell commands:
+#     If it exists:
+#     - Use the RunDockerTool to run exactly these two shell commands:
 
-    ```bash
-    docker build -t audited_project ./cloned_repo
-    docker run --rm audited_project
-    ```
-    If you run the dockerfile, do not run the tool again
-    This will build the Docker image and run the container, capturing any output or errors.
-    And, you are not allowed to run it more than once
-    If it includes errors, capture them and provide a summary, and keep them for the reviewer.
-    If the file is **not present**, clearly state: "❌ Dockerfile not found. Cannot run the project."
-  expected_output: >
-    If the Dockerfile was found and the project ran successfully, output the logs as they are we don't care if they are correct or no, 
-    if the dockerfile is not found, return the message: "❌ Dockerfile not found. Cannot run the project."
-    If the Dockerfile was found but the project failed to run, output the error logs and a summary of what went wrong.
-  agent: runner
+#     ```bash
+#     docker build -t audited_project ./cloned_repo
+#     docker run --rm audited_project
+#     ```
+#     If you run the dockerfile, do not run the tool again
+#     This will build the Docker image and run the container, capturing any output or errors.
+#     And, you are not allowed to run it more than once
+#     If it includes errors, capture them and provide a summary, and keep them for the reviewer.
+#     If the file is **not present**, clearly state: "❌ Dockerfile not found. Cannot run the project."
+#   expected_output: >
+#     If the Dockerfile was found and the project ran successfully, output the logs as they are we don't care if they are correct or no, 
+#     if the dockerfile is not found, return the message: "❌ Dockerfile not found. Cannot run the project."
+#     If the Dockerfile was found but the project failed to run, output the error logs and a summary of what went wrong.
+#   agent: runner
 
 review_errors:
   description: >
-    Analyze the run output or error logs. Identify what went wrong (if anything),
+    Analyze the code and check if it will run successfully or not. Identify what might/might not go wrong (if anything),
     and suggest possible fixes or improvements to make the project runnable.
+    As if you are a reviewer, you are not allowed to run the code again.
+    You only review all the code files, and make sure they run correctly, and raise any feedback if they don't.
   expected_output: >
     A bullet-pointed summary of errors with suggestions or fixes to try. If no errors occurred, confirm successful execution.
   agent: reviewer

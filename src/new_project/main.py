@@ -18,8 +18,11 @@ def run():
     """
     Run the crew with dynamic repo URL input.
     """
+    # inputs = {
+    #     "repo_url": "https://github.com/larawehbe/faulty-python-app"
+    # }
     inputs = {
-        "repo_url": "https://github.com/larawehbe/faulty-python-app"
+        "repo_url": "https://github.com/Nadine-kassir/collaborative-recommendation"
     }
 
     try:

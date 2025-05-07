@@ -32,13 +32,13 @@ class RepoAuditorCrew():
             tools=[InspectRepoTool()],
         )
 
-    @agent
-    def runner(self) -> Agent:
-        return Agent(
-            config=self.agents_config['runner'],
-            verbose=True, 
-            tools=[RunDockerTool()],
-        )
+    # @agent
+    # def runner(self) -> Agent:
+    #     return Agent(
+    #         config=self.agents_config['runner'],
+    #         verbose=True, 
+    #         tools=[RunDockerTool()],
+    #     )
 
     @agent
     def reviewer(self) -> Agent:
@@ -62,19 +62,19 @@ class RepoAuditorCrew():
     @task
     def inspect_repo(self) -> Task:
         return Task(
-            description="Inspect the cloned repository and list all key files including README.md, requirements.txt, setup.py, Dockerfile, and any likely entry points such as app.py or main.py.",
+            description="Inspect the cloned repository and list all key files including README.md, requirements.txt, setup.py, and any likely entry points such as app.py or main.py.",
             expected_output="A summary of the repository structure including detected setup files and possible entry points.",
             agent=self.inspector()
         )
 
-    @task
-    def run_repo(self) -> Task:
+    # @task
+    # def run_repo(self) -> Task:
 
-        return Task(
-            description="Try to install dependencies (from requirements.txt if available) and run the project using the identified main script. Capture and return stdout and stderr output from the process.",
-            expected_output="Full output from running the project, including success logs or any errors encountered.",
-            agent=self.runner()
-        )
+    #     return Task(
+    #         description="Try to install dependencies (from requirements.txt if available) and run the project using the identified main script. Capture and return stdout and stderr output from the process.",
+    #         expected_output="Full output from running the project, including success logs or any errors encountered.",
+    #         agent=self.runner()
+    #     )
 
     @task
     def review_errors(self) -> Task:
