@@ -36,7 +36,9 @@ run_repo:
     If it includes errors, capture them and provide a summary, and keep them for the reviewer.
     If the file is **not present**, clearly state: "❌ Dockerfile not found. Cannot run the project."
   expected_output: >
-    Docker build and run logs, or a clear message if Dockerfile is missing.
+    If the Dockerfile was found and the project ran successfully, output the logs as they are we don't care if they are correct or no, 
+    if the dockerfile is not found, return the message: "❌ Dockerfile not found. Cannot run the project."
+    If the Dockerfile was found but the project failed to run, output the error logs and a summary of what went wrong.
   agent: runner
 
 review_errors:
